@@ -14,7 +14,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  user: "",
+  user: '',
   token: null,
   refresh: null,
   isAuthenticated: false,
@@ -43,7 +43,7 @@ const authSlice = createSlice({
       localStorage.setItem('refresh', action.payload);
     },
     logout: (state) => {
-      state.user = "";
+      state.user = '';
       state.token = null;
       state.refresh = null;
       state.isAuthenticated = false;
@@ -56,4 +56,4 @@ const authSlice = createSlice({
 });
 
 export const { setUser, setToken, logout, setRefreshToken } = authSlice.actions;
-export const authSliceReducer =  authSlice.reducer;
+export const authSliceReducer = authSlice.reducer;

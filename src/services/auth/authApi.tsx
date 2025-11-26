@@ -68,16 +68,15 @@ export const getToken = async ({
 export const refreshToken = async (
   refresh: refreshTokenType,
 ): Promise<refreshTokenType> => {
-  const res = await axios
-    .post(
-      BASE_URL + '/user/token/refresh/',
-      { refresh },
-      {
-        headers: {
-          // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
-          'content-type': 'application/json',
-        },
-      });
+  const res = await axios.post(
+    BASE_URL + '/user/token/refresh/',
+    { refresh },
+    {
+      headers: {
+        // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
+        'content-type': 'application/json',
+      },
+    },
+  );
   return res.data;
 };
-

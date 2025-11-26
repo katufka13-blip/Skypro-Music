@@ -49,7 +49,7 @@
   -ms-flex-pack: center;
   justify-content: center;
   margin-right: 17px;
-   position: relative;
+  position: relative;
 }
 
 .track__titleSvg {
@@ -148,5 +148,4 @@
   background-color: #b672ff;
   border-radius: 8px;
   display: block;
-
 }

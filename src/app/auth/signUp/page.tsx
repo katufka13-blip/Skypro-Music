@@ -36,7 +36,7 @@ export default function SignUp() {
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  
+
   const onChangeRepeatPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRepeatPassword(e.target.value);
   };

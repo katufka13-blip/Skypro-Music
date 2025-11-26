@@ -6,11 +6,15 @@ import classNames from 'classnames';
 import { formatTime } from '../../utils/helpers';
 import { TrackTypes } from '../../sharedTypes/shared.Types';
 import { useAppDispatch, useAppSelector } from '../../store/store';
-import { setCurrentTrack, setCurrentTrackList, setIsPlay } from '../../store/features/trackSlice';
+import {
+  setCurrentTrack,
+  setCurrentTrackList,
+  setIsPlay,
+} from '../../store/features/trackSlice';
 
 interface trackTypeProp {
   track: TrackTypes;
-  playList:TrackTypes[];
+  playList: TrackTypes[];
 }
 
 export default function Track({ track, playList }: trackTypeProp) {
@@ -24,7 +28,7 @@ export default function Track({ track, playList }: trackTypeProp) {
   const onClickTrack = () => {
     dispatch(setCurrentTrack(track));
     dispatch(setIsPlay(true));
-    dispatch(setCurrentTrackList(playList))
+    dispatch(setCurrentTrackList(playList));
   };
 
   const shouldShowPlayingDot = currentTrack && currentTrackId === track._id;
