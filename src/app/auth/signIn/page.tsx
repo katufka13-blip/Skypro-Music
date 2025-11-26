@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { AuthUser, getToken } from '../../../services/auth/authApi';
+import { authUser, getToken } from '../../../services/auth/authApi';
 import { AxiosError } from 'axios';
 import { useAppDispatch } from '../../../store/store';
 import {
@@ -41,7 +41,7 @@ export default function Signin() {
     seteIsLoading(true);
     setErrorMessage('');
 
-    AuthUser({ email, password })
+    authUser({ email, password })
       .then(() => {
         dispatch(setUser(email));
         return getToken({ email, password });

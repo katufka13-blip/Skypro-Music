@@ -28,13 +28,13 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = true;
 
-      localStorage.setItem('userData', JSON.stringify(action.payload));
+      localStorage.setItem('user', JSON.stringify(action.payload));
     },
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
       state.isAuthenticated = true;
 
-      localStorage.setItem('userToken', action.payload);
+      localStorage.setItem('token', action.payload);
     },
     setRefreshToken: (state, action: PayloadAction<string>) => {
       state.refresh = action.payload;
@@ -48,8 +48,8 @@ const authSlice = createSlice({
       state.refresh = null;
       state.isAuthenticated = false;
 
-      localStorage.removeItem('userData');
-      localStorage.removeItem('userToken');
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
       localStorage.removeItem('refresh');
     },
   },

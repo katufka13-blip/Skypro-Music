@@ -22,7 +22,7 @@ interface accessTokenType {
 
 type tokenType = accessTokenType & refreshTokenType;
 
-export const AuthUser = (data: authUserForm): Promise<authUserReturn> => {
+export const authUser = (data: authUserForm): Promise<authUserReturn> => {
   return axios.post(BASE_URL + '/user/login/', data, {
     headers: {
       // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
@@ -31,7 +31,7 @@ export const AuthUser = (data: authUserForm): Promise<authUserReturn> => {
   });
 };
 
-export const RegUser = ({
+export const regUser = ({
   email,
   password,
 }: authUserForm): Promise<authUserReturn> => {
@@ -63,11 +63,10 @@ export const getToken = async ({
   );
   return res.data;
 };
-//tokensType
 
 export const refreshToken = async (
-  refresh: refreshTokenType,
-): Promise<refreshTokenType> => {
+  refresh: string,
+): Promise<tokenType> => {
   const res = await axios.post(
     BASE_URL + '/user/token/refresh/',
     { refresh },

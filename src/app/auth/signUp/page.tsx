@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { getToken, RegUser } from '../../../services/auth/authApi';
+import { getToken, regUser } from '../../../services/auth/authApi';
 import { AxiosError } from 'axios';
 import { useAppDispatch } from '../../../store/store';
 import {
@@ -55,7 +55,7 @@ export default function SignUp() {
     seteIsLoading(true);
     setErrorMessage('');
 
-    RegUser({ email, password })
+    regUser({ email, password })
       .then(() => {
         dispatch(setUser(email));
         return getToken({ email, password });
