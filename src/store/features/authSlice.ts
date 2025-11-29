@@ -8,15 +8,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   user: string;
-  token: string | null;
-  refresh: string | null;
+  access: string;
+  refresh: string;
   isAuthenticated: boolean;
 }
 
 const initialState: AuthState = {
   user: '',
-  token: null,
-  refresh: null,
+  access: '',
+  refresh: '',
   isAuthenticated: false,
 };
 
@@ -28,13 +28,13 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = true;
 
-      localStorage.setItem('user', JSON.stringify(action.payload));
+      localStorage.setItem('user', action.payload);
     },
     setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
+      state.access = action.payload;
       state.isAuthenticated = true;
 
-      localStorage.setItem('token', action.payload);
+      localStorage.setItem('access', action.payload);
     },
     setRefreshToken: (state, action: PayloadAction<string>) => {
       state.refresh = action.payload;
@@ -44,12 +44,12 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.user = '';
-      state.token = null;
-      state.refresh = null;
+      state.access = '';
+      state.refresh = '';
       state.isAuthenticated = false;
 
       localStorage.removeItem('user');
-      localStorage.removeItem('token');
+      localStorage.removeItem('access');
       localStorage.removeItem('refresh');
     },
   },

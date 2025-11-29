@@ -50,11 +50,13 @@ export default function Nav() {
                 Главное
               </Link>
             </li>
-            <li className={styles.menu__item}>
-              <Link href="/music/categories/2" className={styles.menu__link}>
-                Мои треки
-              </Link>
-            </li>
+            {user && (
+              <li className={styles.menu__item}>
+                <Link href="/music/favorite" className={styles.menu__link}>
+                  Мои треки
+                </Link>
+              </li>
+            )}
             {user && (
               <li className={styles.menu__item}>
                 <p onClick={handleLogout} className={styles.menu__link}>

@@ -21,7 +21,6 @@ export default function CategoryPage() {
   const [title, setTitle] = useState<string>('');
 
   useEffect(() => {
-   
     if (!fetchIsLoading && allTracks.length) {
       getTracksId(id)
         .then((res) => {
@@ -52,12 +51,12 @@ export default function CategoryPage() {
   }, [fetchIsLoading, error, id]);
   return (
     <>
-        <CenterBlock
-          title={title}
-          tracks={tracks}
-          errorRes={errorRes || fetchError}
-          isLoading={isLoading}
-        />
+      <CenterBlock
+        title={title}
+        tracks={tracks}
+        errorRes={errorRes || fetchError}
+        isLoading={isLoading}
+      />
     </>
   );
 }

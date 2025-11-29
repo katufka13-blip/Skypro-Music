@@ -11,6 +11,7 @@ import {
   setCurrentTrackList,
   setIsPlay,
 } from '../../store/features/trackSlice';
+import { useLikeTrack } from '../../hooks/useLikeTracks';
 
 interface trackTypeProp {
   track: TrackTypes;
@@ -24,6 +25,8 @@ export default function Track({ track, playList }: trackTypeProp) {
   const currentTrackId = useAppSelector(
     (state) => state.tracks.currentTrack?._id,
   );
+  const { toggleLike, isLike, errorMsg } = useLikeTrack(track);
+  const user = useAppSelector((state) => state.auth.user);
 
   const onClickTrack = () => {
     dispatch(setCurrentTrack(track));
@@ -47,7 +50,6 @@ export default function Track({ track, playList }: trackTypeProp) {
               <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
             </svg>
           </div>
-
           <div className="track__title-text">
             <Link className={styles.track__titleLink} href="">
               {track.name}
@@ -65,13 +67,25 @@ export default function Track({ track, playList }: trackTypeProp) {
             {track.album}
           </Link>
         </div>
-        <div className={styles.track__time}>
-          <svg className={styles.track__timeSvg}>
-            <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
-          </svg>
+        <div className={styles.track__time} onClick={toggleLike}>
+          {user ? (
+            <svg
+              className={classNames(`${styles.track__timeSvg},
+                ${isLike ? styles.trackPlay__liked : styles.track__timeSvg}`)}
+            >
+              <use
+                xlinkHref={`/img/icon/sprite.svg#${isLike ? 'icon-like' : 'icon-dislike'}`}
+              ></use>
+            </svg>
+          ) : (
+            <svg className={styles.track__timeSvg}>
+              <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
+            </svg>
+          )}
           <span className={styles.track__timeText}>
-            {formatTime(track.duration_in_seconds)}{' '}
+            {formatTime(track.duration_in_seconds)}
           </span>
+          <div className={styles.errorContainer}>{errorMsg}</div>
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ export default function Signin() {
         return getToken({ email, password });
       })
       .then((res) => {
-        dispatch(setToken(res.token));
+        dispatch(setToken(res.access));
         dispatch(setRefreshToken(res.refresh));
 
         router.push('/music/main');

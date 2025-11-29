@@ -18,7 +18,7 @@ export const makeStore = () => {
 export type AppStore = ReturnType<typeof makeStore>;
 
 // Infer the \`RootState\` and \`AppDispatch\` types from the store itself
-type RootState = ReturnType<AppStore['getState']>;
+export type RootState = ReturnType<AppStore['getState']>;
 export type AppDispatch = AppStore['dispatch'];
 
 // Для нового TS
